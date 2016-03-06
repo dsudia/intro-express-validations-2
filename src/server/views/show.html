@@ -8,6 +8,13 @@
   <div class="container">
 
     <h1>Showing People</h1>
+
+    {% if messages.length %}
+    <div class='alert alert-success'>
+      {{ messages }}
+    </div>
+    {% endif %}
+
     <table>
       <tr>
         <th><strong>Name</strong></th>
