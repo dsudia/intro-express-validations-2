@@ -2,8 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('people', function(table) {
     table.increments();
-    table.string('name');
-    column.unique('name');
+    table.string('name').unique();
     table.string('hobby');
   });
 };
