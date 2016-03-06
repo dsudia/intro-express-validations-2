@@ -5,7 +5,7 @@ var knex = require('../db/knex');
 
 function validSubmit(req, res, next) {
   if (req.body.name === '' && req.body.hobby === '') {
-    req.flash('danger', 'You must enter a name.\nYou must enter a hobby.');
+    req.flash('danger', 'You must enter a name and hobby.');
     res.redirect('/');
   } else if (req.body.name === '' && req.body.hobby !== '') {
     req.flash('danger', 'You must enter a name.');
@@ -34,7 +34,8 @@ router.post('/', validSubmit, function(req, res, next) {
     name: person.name,
     hobby: person.hobby
   }).catch(function(err) {
-    console.log(err);
+    req.flash('danger', err.detail);
+    res.redirect('/');
   }).then(function(data) {
     req.flash('success', 'The person was saved successfully!');
     res.redirect('/show');
