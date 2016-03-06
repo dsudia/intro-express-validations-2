@@ -19,12 +19,12 @@ function validSubmit(req, res, next) {
 }
 
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', {messages: req.flash('danger')});
 });
 
 router.get('/show', function(req, res, next) {
   knex('people').select().then(function(data) {
-    res.render('show', {messages: req.flash(success), people: data});
+    res.render('show', {messages: req.flash('success'), people: data});
   });
 });
 
