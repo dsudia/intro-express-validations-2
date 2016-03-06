@@ -8,7 +8,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-
+  var person = req.body;
+  knex('people').insert({
+    name: person.name,
+    hobby: person.hobby
+  });
 });
 
 module.exports = router;
